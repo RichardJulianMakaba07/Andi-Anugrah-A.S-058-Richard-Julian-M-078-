@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sistem Pendaftaran Siswa</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-card">
+
+      <div class="form-header">
+        <h1>🎓 Sistem Pendaftaran Siswa</h1>
+        <p>Lengkapi data diri Anda dengan akurat</p>
+      </div>
+
+      <div class="form-nav">
+        <button class="nav-btn active" onclick="showPage('register')">➕ Register</button>
+        <button class="nav-btn" onclick="showPage('login')">🔑 Login</button>
+        <button class="nav-btn" onclick="showPage('formulir')">📄 Formulir</button>
+      </div>
+
+      <div class="form-content">
+        <div id="alert-container"></div>
+
+        <!-- Register -->
+        <div id="register-page" class="page active">
+          <form id="registerForm">
+            <div class="form-grid">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nama_lengkap">👤 Nama Lengkap</label>
+                  <input type="text" id="nama_lengkap" name="nama_lengkap" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="username">🆔 Username</label>
+                  <input type="text" id="username" name="username" class="form-control" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">✉️ Email</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="reg-password">🔒 Password</label>
+                  <input type="password" id="reg-password" name="password" class="form-control" required>
+                </div>
+                <div class="form-group">
+                  <label for="reg-confirm">🔒 Konfirmasi Password</label>
+                  <input type="password" id="reg-confirm" name="confirm_password" class="form-control" required>
+                </div>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button type="submit" class="btn btn-primary">➕ Register</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Login -->
+        <div id="login-page" class="page">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="login-username">👤 Username</label>
+              <input type="text" id="login-username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label for="login-password">🔒 Password</label>
+              <input type="password" id="login-password" name="password" class="form-control" required>
+            </div>
+            <div class="btn-group">
+              <button type="submit" class="btn btn-primary">🔑 Login</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Formulir -->
+        <div id="formulir-page" class="page">
+          <form id="studentForm">
+            <div class="form-group">
+              <label for="nama">👤 Nama Calon Siswa</label>
+              <input type="text" id="nama" name="nama" class="form-control" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tempat_lahir">📍 Tempat Lahir</label>
+                <input type="text" id="tempat_lahir" name="tempat_lahir" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="tanggal_lahir">📅 Tanggal Lahir</label>
+                <input type="date" id="tanggal_lahir" name="tanggal_lahir" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="agama">🙏 Agama</label>
+                <select id="agama" name="agama" class="form-control" required>
+                  <option value="">-- Pilih Agama --</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Kristen">Kristen</option>
+                  <option value="Katolik">Katolik</option>
+                  <option value="Hindu">Hindu</option>
+                  <option value="Buddha">Buddha</option>
+                  <option value="Konghucu">Konghucu</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="telepon">📞 No. Telp/HP</label>
+                <input type="tel" id="telepon" name="telepon" class="form-control" placeholder="08xxxxxxxxxx" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="alamat">🏠 Alamat</label>
+              <textarea id="alamat" name="alamat" class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+              <label>⚧ Jenis Kelamin</label>
+              <div class="radio-group">
+                <label>
+                  <input type="radio" name="jenis_kelamin" value="Laki-laki" required>
+                  Laki-laki
+                </label>
+                <label>
+                  <input type="radio" name="jenis_kelamin" value="Perempuan">
+                  Perempuan
+                </label>
+              </div>
+            </div>
+            <div class="btn-group">
+              <button type="submit" class="btn btn-primary">📤 Daftar</button>
+              <button type="button" class="btn btn-secondary" onclick="resetForm()">🔄 Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Success -->
+        <div id="success-page" class="page">
+          <div class="success-message">
+            <h2>✅ Pendaftaran Berhasil!</h2>
+            <p>Data Anda telah berhasil disimpan. Terima kasih.</p>
+            <button class="btn btn-primary" onclick="showPage('formulir')">➕ Daftar Lagi</button>
+          </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+          <div class="spinner"></div>
+          <p>⏳ Memproses data...</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
